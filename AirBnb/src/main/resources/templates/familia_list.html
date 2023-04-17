@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Estancia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/lista.css">
+    <link rel="stylesheet" href="/css/navbar2.css">
+</head>
+
+<body>
+
+    <nav th:replace="fragments/navbar2 :: nav"></nav>
+
+    <div>
+        <table>
+            <caption>Listado de Usuarios</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Alias</th>
+                    <th scope="col">Fecha de Alta</th>
+                    <th scope="col">Fecha de Baja</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody th:each="familia : ${familias}">
+                <tr>
+                    <th scope="row" th:text="${familia.id}"></th>
+                    <td scope="row" th:text="${familia.alias}"></td>
+                    <td scope="row" th:text="${familia.fechaAlta}"></td>
+                    <td scope="row" th:text="${familia.fechaBaja}"></td>
+                </tr>
+            </tbody>
+
+            
+        </table>
+    </div>
+
+        
+    </body>
+
+</html>

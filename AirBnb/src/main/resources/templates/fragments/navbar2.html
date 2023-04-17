@@ -1,0 +1,36 @@
+<nav class="contenedor">
+    <a class="logo" href="/"><img src="/IMG/logo.png" alt="Logo" style="height: auto; width: 100px;"></a>
+    <input type="checkbox" id="toggler" />
+    <label for="toggler"><i class="ri-menu-line"></i></label>
+    <div class="menu">
+        <ul class="list">
+            <li><a th:if="${session.usuariosession != null}" th:href="@{/}">Home</a></li>
+            <li><a th:if="${session.usuariosession != null}" sec:authorize="hasRole('CLIENTE')"
+                    th:href="@{/reserva/listar}">Ver reservas</a></li>
+            <li class="dropdown" sec:authorize="hasRole('FAMILIA')"><a
+                    th:if="${session.usuariosession != null}">Casas</a>
+                <ul>
+                    <li><a th:href="@{/casa/registrar}">Crear casa</a></li>
+                    <li><a th:href="@{/casa/vista}">Ver casas</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" sec:authorize="hasRole('ADMIN')"><a th:if="${session.usuariosession != null}"
+                    href="#">Administrador</a>
+                <ul>
+                    <li><a th:href="@{/admin/lista}">Usuarios</a></li>
+                    <li><a th:href="@{/familia/lista}">Familias</a></li>
+                    <li><a th:href="@{/cliente/lista}">Clientes</a></li>
+                </ul>
+            </li>
+            <li><a th:if="${session.usuariosession == null}" th:href="@{/registrar}">Registrarse</a></li>
+            <li><a th:if="${session.usuariosession == null}" th:href="@{/login}">Loguearse</a></li>
+            <li class="dropdown" sec:authorize="hasRole('ADMIN')"><a href="#">Perfil</a>
+                <ul>
+                    <li><a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/perfil}">Editar</a></li>
+                </ul>
+            </li>
+            <li><a th:if="${session.usuariosession != null}" href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    </div>
+</nav>

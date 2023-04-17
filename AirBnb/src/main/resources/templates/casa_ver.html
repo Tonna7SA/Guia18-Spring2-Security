@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Ver Casas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="shortcut icon" href="/IMG/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/navbar2.css">
+    <link rel="stylesheet" href="/css/inicio.css">
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar2 :: nav"></nav>
+
+
+    <div class="flex-main">
+        <div class="card" th:each="casa : ${casas}">
+            <div class="card__image">
+                <img th:if="${casa.imagen != null}" th:src="@{/imagen/__${casa.id}__}" alt="casa">
+            </div>
+            <div class="card__content">
+                <p class="card__title"
+                    th:text="${casa.calle} + ' ' + ${casa.numero} + ', ' + ${casa.ciudad} + ', ' + ${casa.pais}"></p>
+                <p class="card__text"
+                    th:text="'Disponible desde: ' + ${casa.fechaDesde} + ' hasta: ' + ${casa.fechaHasta}">
+                </p>
+                <p class="card__text"
+                    th:text="'Estancia mínima: ' + ${casa.minDias} + ' días, estancia máxima: ' + ${casa.maxDias} + ' días.'">
+                </p>
+                <p class="card__text" th:text="'Precio por noche: $' + ${casa.precio}">
+                </p>
+                <a class="card__button" th:href="@{/casa/modificar/__${casa.id}__}">Modificar</a>
+                <a class="card__button" th:href="@{/casa/eliminar/__${casa.id}__}">Eliminar</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

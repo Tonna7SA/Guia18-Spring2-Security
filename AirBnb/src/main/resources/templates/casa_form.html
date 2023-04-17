@@ -1,0 +1,105 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Registrar Casa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/IMG/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="stylesheet" href="/css/navbar2.css">
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar2 :: nav"></nav>
+
+
+    <div class="contenedor">
+        <div class="login-box">
+            <p>Crear casa</p>
+            <form th:action="@{/casa/registro}" method="POST" enctype="multipart/form-data">
+                <input hidden th:value="${session.usuariosession.id}" name="idFamilia">
+                <div class="user-box">
+                    <label for="calle"></label>
+                    <input placeholder="Calle" type="text" id="calle" name="calle" th:value="${calle}">
+                </div>
+                <div class="user-box">
+                    <label for="numero"></label>
+                    <input placeholder="Número" type="number" id="numero" name="numero" th:value="${numero}">
+                </div>
+                <div class="user-box">
+                    <label for="codPostal"></label>
+                    <input placeholder="Código Postal" type="text" id="codPostal" name="codPostal"
+                        th:value="${codPostal}">
+                </div>
+                <div class="user-box">
+                    <label for="ciudad"></label>
+                    <input placeholder="Ciudad" type="text" id="ciudad" name="ciudad" th:value="${ciudad}">
+                </div>
+                <div class="user-box">
+                    <label for="pais"></label>
+                    <input placeholder="País" type="text" id="pais" name="pais" th:value="${pais}">
+                </div>
+                <div class="user-box">
+                    <label for="fechaDesde"></label>
+                    <input placeholder="Disponible desde" type="text" onfocus="(this.type='date')"
+                        onfocusout="(this.type='text')" id="fechaDesde" name="fechaDesde" 
+                        th:value="${fechaDesde}">
+                </div>
+                <div class="user-box">
+                    <label for="fechaHasta"></label>
+                    <input placeholder="Disponible hasta" type="text" onfocus="(this.type='date')"
+                        onfocusout="(this.type='text')" id="fechaHasta" name="fechaHasta" 
+                        th:value="${fechaHasta}">
+                </div>
+                <div class="user-box">
+                    <label for="minDias"></label>
+                    <input placeholder="Estancia mínima" type="number" id="minDias" name="minDias"
+                        th:value="${minDias}">
+                </div>
+                <div class="user-box">
+                    <label for="maxDias"></label>
+                    <input placeholder="Estancia máxima" type="number" id="maxDias" name="maxDias"
+                        th:value="${maxDias}">
+                </div>
+                <div class="user-box">
+                    <label for="precio"></label>
+                    <input placeholder="Precio por noche" type="number" id="precio" name="precio" th:value="${precio}">
+                </div>
+                <div class="user-box">
+                    <label for="tipoVivienda"></label>
+                    <input class="letra" placeholder="Tipo de vivienda:" type="text" id="tipoVivienda"
+                        name="tipoVivienda" th:value="${tipoVivienda}">
+                </div>
+                <div class="user-box">
+                    <input type="file" name="archivo">
+                </div>
+                <button class="boton" type="submit">
+                    Crear
+                </button>
+            </form>
+            <br><br>
+            <div th:if="${exito}!=null">
+
+                <div class="cartel">
+
+                    <div class="card">
+                        <h2>La casa se creó correctamente</h2>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${error != null}">
+                <div class="cartel">
+
+                    <div class="card">
+                        <h2>No se pudo crear la casa</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

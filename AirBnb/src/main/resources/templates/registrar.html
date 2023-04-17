@@ -1,0 +1,148 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loguear</title>
+    <link rel="stylesheet" href="/css/login2.css" />
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <div class="login-box">
+            <div style="display: flex; justify-content: center;">
+                <img src="/IMG/logo.png" alt="Logo" style="width: 250px;">
+            </div>
+            <br>
+
+            <form th:action="@{/registro}" method="POST">
+                <div class="user-box">
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu email" th:value="${email}">
+                    <label for="email"></label>
+                </div>
+
+                <div class="user-box">
+                    <input type="text" id="alias" name="alias" placeholder="Ingresa tu alias" th:value="${alias}">
+                    <label for="email"></label>
+                </div>
+
+                <div class="user-box">
+                    <input type="password" id="clave" name="clave" placeholder="Ingresar PASS" th:value="${clave}">
+                    <label for="clave"></label>
+                </div>
+
+                <div class="user-box">
+                    <input type="password" id="clave2" name="clave2" placeholder="Repetir PASS" th:value="${clave2}">
+                    <label for="clave2"></label>
+                </div>
+
+                <div class="user-box">
+                    <label for="rol"></label>
+                    <select name="rol" id="rol">
+                        <br><br>
+                        <option value="usuario">Seleccionar
+                        </option>
+                        <option value="cliente" th:selected="${rol == 'cliente'}">Cliente
+                        </option>
+                        <option value="familia" th:selected="${rol == 'familia'}">Familia
+                        </option>
+                    </select>
+                </div>
+
+                <div id="campos-adicionales">
+                    Aquí se mostrarán los campos adicionales según el rol elegido
+                </div>
+                <br>
+
+                <button class="boton" type="submit">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Crear
+
+                </button>
+            </form>
+            <p>¿Ya tenés una cuenta? <a th:href="@{/login}" class="a2">Ingresar</a></p>
+        </div>
+
+
+
+
+
+
+        <script>
+            const camposAdicionales = document.getElementById("campos-adicionales");
+            const rolSelect = document.getElementById("rol");
+
+            function mostrarCamposAdicionales() {
+                camposAdicionales.innerHTML = ""; // Limpiamos los campos adicionales
+
+                if (rolSelect.value === "cliente") {
+                    camposAdicionales.innerHTML = `
+                <div class="user-box">
+                    <input type="text" id="calle" class="form-control" name="calle"
+                    placeholder="Ingresa tu calle" />
+                    <label class="form-label" for="calle"></label>
+                </div>
+                <div class="user-box">
+                    <input type="number" id="numero" class="form-control" name="numero"
+                    placeholder="Ingresa tu número" />
+                    <label class="form-label" for="numero"></label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="codPostal" class="form-control" name="codPostal"
+                    placeholder="Ingresa tu código postal" />
+                    <label class="form-label" for="codPostal"></label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="ciudad" class="form-control" name="ciudad"
+                    placeholder="Ingresa tu ciudad" />
+                    <label class="form-label" for="ciudad"></label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="pais" class="form-control" name="pais"
+                    placeholder="Ingresa tu pais" />
+                    <label class="form-label" for="pais"></label>
+                </div>
+                `;
+                } else if (rolSelect.value === "familia") {
+                    camposAdicionales.innerHTML = `
+                <div class="user-box">
+                    <input type="number" id="numHijos" class="form-control" name="numHijos"
+                    placeholder="Ingresa tu número de hijos" />
+                    <label class="form-label" for="numHijos"></label>
+                </div>
+                <div class="user-box">
+                    <input type="number" id="edadMin" class="form-control" name="edadMin"
+                    placeholder="Ingresa la edad del hijo más chico" />
+                    <label class="form-label" for="edadMin"></label>
+                </div>
+                <div class="user-box">
+                    <input type="number" id="edadMax" class="form-control" name="edadMax"
+                    placeholder="Ingresa la edad del hijo más grande" />
+                    <label class="form-label" for="edadMax"></label>
+                </div>
+                `;
+                }
+            }
+
+            // Ejecutamos la función al cargar la página
+            document.addEventListener("DOMContentLoaded", mostrarCamposAdicionales);
+
+            // Ejecutamos la función al cambiar el valor del select
+            rolSelect.addEventListener("change", mostrarCamposAdicionales);
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            crossorigin="anonymous"></script>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+/* Import font
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap"); */
+
+@font-face {
+  font-family: 'cereal';
+  src: url('/tipografia/AirbnbCerealLight.ttf');
+}
+
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+body {
+    font-family: "cereal";
+    background-color: white;
+    padding: 20px;
+    
+}
+/* General styles end */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 5px;
+}
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:end;
+    background-color: white;
+    padding-block: 15px;
+    
+}
+.navbar a {
+    text-decoration: none;
+    color: black;
+    
+}
+.logo {
+    margin-right: 250px;
+}
+.list {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+#toggler,
+.navbar label {
+    display: none;
+}
+@media screen and (max-width: 600px) {
+    .menu {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+    }
+    .list {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .navbar label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    #toggler:checked ~ .menu {
+        max-height: 100%;
+    }
+    .list li {
+        margin: 1rem 0;
+    }
+}
+.dropdown ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: transparent;
+  padding: 0.5rem 0;
+}
+.dropdown:hover ul {
+  display: block;
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.list li {
+  list-style: none;
+  margin: 0 1rem;
+  position: relative;
+  padding: 5px;
+}
+.list li a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+}
+.list li:hover a {
+  color: #F4555C;
+}
+.dropdown:hover a {
+  color: black;
+}
+.dropdown:hover ul {
+  width: 135px;
+  height: 185px;
+  display: block;
+}
+
+.contenedor{
+  
+  display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    align-items: center;
+}

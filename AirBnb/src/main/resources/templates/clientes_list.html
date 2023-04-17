@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Estancia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/lista.css">
+    <link rel="stylesheet" href="/css/navbar2.css">
+</head>
+
+<body>
+
+    <nav th:replace="fragments/navbar2 :: nav"></nav>
+
+    <div>
+        <table>
+            <caption>Listado de Clientes</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Alias</th>
+                    <th scope="col">Fecha de Alta</th>
+                    <th scope="col">Fecha de Baja</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Código Postal</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">País</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody th:each="cliente : ${clientes}">
+                <tr>
+                    <th scope="row" th:text="${cliente.id}"></th>
+                    <td th:text="${cliente.alias}"></td>
+                    <td th:text="${cliente.fechaAlta}"></td>
+                    <td th:text="${cliente.fechaBaja != null} ? ${cliente.fechaBaja} : 'Cliente Activo'"></td>
+                    <td th:text="${cliente.calle + ' ' + cliente.numero}"></td>
+                    <td th:text="${cliente.codPostal}"></td>
+                    <td th:text="${cliente.ciudad}"></td>
+                    <td th:text="${cliente.pais}"></td>
+                </tr>
+            </tbody>
+
+            
+        </table>
+    </div>
+
+
+</body>
+
+</html>
